@@ -14,8 +14,10 @@ from .serializers import ProductSerializer
 #     return Response(serialize.data)
 
 
-class ProductListView(generics.ListCreateAPIView):
+class ProductListAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-products_list = ProductListView.as_view()
+class ProductDetailsAPIView(generics.RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
