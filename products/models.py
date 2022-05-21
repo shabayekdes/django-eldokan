@@ -1,3 +1,4 @@
+from django.urls import reverse
 from unicodedata import category
 from django.db import models
 from brands.models import Brand
@@ -15,3 +16,7 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to='images/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse("products-detail", kwargs={"id": self.pk})
+    
