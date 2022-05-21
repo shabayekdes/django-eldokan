@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics
@@ -40,3 +40,15 @@ def product_detail(request, id):
         'object': obj
     }
     return render(request, 'products/details.html', context=context)
+
+def product_update(request, id=None):
+    obj = get_object_or_404(Product, id=id)
+    form = ProductForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
+        return redirect(obj.get_absolute_url())
+    context = {
+        'object': obj,
+        'form': form
+    }
+    return render(request, 'products/update.html', context=context)
