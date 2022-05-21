@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-83d40a2!xgt5v=kqnp(9ioe4!!ssti6v(mj8ebp3-)o-xk@h5!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+if not DEBUG:
+    ALLOWED_HOSTS += ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -125,6 +126,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static", # os.path.join(BASE_DIR, 'static')
+]
+
+STATIC_ROOT = BASE_DIR / "static" # in production, we want cdn
+
+MEDIA_ROOT = BASE_DIR / "static" / "uploads"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
