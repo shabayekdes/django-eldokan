@@ -3,3 +3,4 @@ pillow
 djangorestframework
 pyyaml
 django-cors-headers
+mysqlclient

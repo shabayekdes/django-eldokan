@@ -84,9 +84,17 @@ WSGI_APPLICATION = 'djstore.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "tarshouby",
+        "USER": "root",
+        "PASSWORD": "1951989",
+        "HOST": "localhost",
+        "PORT": 3306,
     }
 }
 
@@ -131,7 +139,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static", # os.path.join(BASE_DIR, 'static')
 ]
 
-STATIC_ROOT = BASE_DIR / "static" # in production, we want cdn
+STATIC_ROOT = BASE_DIR / "static-cdn" # in production, we want cdn
 
 MEDIA_ROOT = BASE_DIR / "static" / "uploads"
 
