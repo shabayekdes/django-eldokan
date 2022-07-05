@@ -1,15 +1,21 @@
-from pydoc import describe
 from django.db import models
+
 
 # Create your models here.
 class Category(models.Model):
-    name_en = models.CharField(max_length=50)
-    name_ar = models.CharField(max_length=50)
-    description_en = models.TextField()
-    description_ar = models.TextField()
-    slug = models.CharField(unique=True)
-    slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='images/')
-    active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    name = models.CharField(max_length=255)
+    name_ar = models.CharField(max_length=255, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    description_ar = models.CharField(max_length=255, blank=True, null=True)
+    parent = models.ForeignKey('self', models.DO_NOTHING, blank=True, null=True)
+    image = models.CharField(max_length=255, blank=True, null=True)
+    active = models.IntegerField()
+    deactivation_notes = models.TextField(blank=True, null=True)
+    order = models.IntegerField()
+    slug = models.SlugField()
+    is_highlighter = models.IntegerField()
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'categories'
